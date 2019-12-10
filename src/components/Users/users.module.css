@@ -1,0 +1,46 @@
+.users {
+
+}
+
+.item {
+    display: flex;
+}
+
+.left_block {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.left_block .button {
+    margin-top: 10px;
+}
+
+.left_block img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.right_block {
+    width: 40%;
+    border: 1px solid gray;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.right_block .line{
+    display: flex;
+    justify-content: space-between;
+}
+
+.selectedPage {
+    color: gold;
+}
+
+.hov:hover {
+    cursor: pointer;
+}

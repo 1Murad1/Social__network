@@ -1,0 +1,8 @@
+.item {
+    margin-top: 10px;
+}
+
+.item img {
+    width: 10% ;
+    border-radius: 50%;
+}
