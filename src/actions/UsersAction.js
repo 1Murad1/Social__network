@@ -4,7 +4,8 @@ import {
     setTotalUsersCount,
     setUsers,
     toggleIsFetching,
-    unFollow
+    unFollow,
+    toggleIsFollowingProgress
 } from "../reducers/usersReducer";
 
 export const followActionCreator = (userId) => ({type: follow, userId: userId});
@@ -18,3 +19,5 @@ export const setCurrentPageActionCreator = (currentPage) => ({type: setCurrentPa
 export const setTotalUsersCountActionCreator = (totalCount) => ({type: setTotalUsersCount, totalCount: totalCount});
 
 export const toggleIsFetchingActionCreator = (isFetching) => ({type: toggleIsFetching, isFetching: isFetching});
+
+export const toggleIsFollowingProgressActionCreator = (isFetching, userId) => ({type: toggleIsFollowingProgress, isFetching: isFetching, userId: userId});

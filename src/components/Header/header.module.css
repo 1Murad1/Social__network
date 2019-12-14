@@ -4,8 +4,16 @@
     display: flex;
     align-items: center;
     padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.logo > img {
+.logo  img {
     width: 30px;
+}
+
+.loginBlock a {
+    text-decoration: none;
+    cursor: pointer !important;
+    color: #fff;
 }

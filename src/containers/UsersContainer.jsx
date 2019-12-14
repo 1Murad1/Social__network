@@ -6,20 +6,20 @@ import {
     setCurrentPageActionCreator,
     setUsersActionCreator,
     unFollowActionCreator,
-    setTotalUsersCountActionCreator, toggleIsFetchingActionCreator
+    setTotalUsersCountActionCreator, toggleIsFetchingActionCreator, toggleIsFollowingProgressActionCreator
 } from "../actions/UsersAction";
-import * as axios from "axios";
 import Preloader from "../common/Preloader/Preloader";
+import {usersApi} from "../Api/api";
 
 class UsersContainer extends React.Component  {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        usersApi.getUsers(this.props.currentPage, this.props.pageSize)
         .then(response => {
                 this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalCount)
+                this.props.setUsers(response.items)
+                this.props.setTotalUsersCount(response.totalCount)
             }
         )
     }
@@ -27,10 +27,10 @@ class UsersContainer extends React.Component  {
     onPageChanged = (p) => {
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(p)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
+        usersApi.getUsers(this.props.pageSize)
         .then(response => {
                 this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
+                this.props.setUsers(response.items)
                 console.log(response)
             }
         )
@@ -47,7 +47,9 @@ class UsersContainer extends React.Component  {
                        totalUsersCount={this.props.totalUsersCount}
                        onPageChanged={this.onPageChanged}
                        follow={this.props.follow}
-                       unFollow={this.props.unFollow} />
+                       unFollow={this.props.unFollow}
+                       followingIsProgress={this.props.followingIsProgress}
+                       toggleIsFollowingProgress={this.props.toggleIsFollowingProgress} />
             </>
         )
     }
@@ -60,7 +62,8 @@ const mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingIsProgress: state.usersPage.followingIsProgress
     }
 }
 
@@ -83,6 +86,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         toggleIsFetching: (isFetching) => {
             dispatch(toggleIsFetchingActionCreator(isFetching))
+        },
+        toggleIsFollowingProgress: (isFetching, userId) => {
+            dispatch(toggleIsFollowingProgressActionCreator(isFetching, userId))
         }
     }
 }
