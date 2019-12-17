@@ -2,38 +2,19 @@ import React from "react";
 import Users from "../components/Users/Users";
 import {connect} from "react-redux";
 import {
-    followActionCreator,
     setCurrentPageActionCreator,
-    setUsersActionCreator,
-    unFollowActionCreator,
-    setTotalUsersCountActionCreator, toggleIsFetchingActionCreator, toggleIsFollowingProgressActionCreator
+    getUsersThunkCreator, followThunkCreator, unFollowThunkCreator
 } from "../actions/UsersAction";
 import Preloader from "../common/Preloader/Preloader";
-import {usersApi} from "../Api/api";
 
 class UsersContainer extends React.Component  {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        usersApi.getUsers(this.props.currentPage, this.props.pageSize)
-        .then(response => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(response.items)
-                this.props.setTotalUsersCount(response.totalCount)
-            }
-        )
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (p) => {
-        this.props.toggleIsFetching(true)
-        this.props.setCurrentPage(p)
-        usersApi.getUsers(this.props.pageSize)
-        .then(response => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(response.items)
-                console.log(response)
-            }
-        )
+        this.props.getUsers(p, this.props.pageSize)
     }
 
     render() {
@@ -48,8 +29,7 @@ class UsersContainer extends React.Component  {
                        onPageChanged={this.onPageChanged}
                        follow={this.props.follow}
                        unFollow={this.props.unFollow}
-                       followingIsProgress={this.props.followingIsProgress}
-                       toggleIsFollowingProgress={this.props.toggleIsFollowingProgress} />
+                       followingIsProgress={this.props.followingIsProgress} />
             </>
         )
     }
@@ -70,25 +50,16 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         follow: (userId) => {
-            dispatch(followActionCreator(userId))
+            dispatch(followThunkCreator(userId))
         },
         unFollow: (userId) => {
-            dispatch(unFollowActionCreator(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersActionCreator(users))
+            dispatch(unFollowThunkCreator(userId))
         },
         setCurrentPage: (numberPage) => {
             dispatch(setCurrentPageActionCreator(numberPage))
         },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setTotalUsersCountActionCreator(totalCount))
-        },
-        toggleIsFetching: (isFetching) => {
-            dispatch(toggleIsFetchingActionCreator(isFetching))
-        },
-        toggleIsFollowingProgress: (isFetching, userId) => {
-            dispatch(toggleIsFollowingProgressActionCreator(isFetching, userId))
+        getUsers: (currentPage, pageSize) => {
+            dispatch(getUsersThunkCreator(currentPage, pageSize))
         }
     }
 }
