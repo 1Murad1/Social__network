@@ -1,11 +1,4 @@
-export const follow = "FOLLOW";
-export const unFollow = "UN-FOLLOW";
-export const setUsers = "SET-USERS";
-export const setCurrentPage = "SET-CURRENT-PAGE";
-export const setTotalUsersCount = "SET-TOTAL-USERS-COUNT";
-export const toggleIsFetching = "TOGGLE-IS-FETCHING";
-export const toggleIsFollowingProgress = "TOGGLE-IS-FOLLOWING-PROGRESS";
-
+import {follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFollowingProgress, toggleIsFetching} from "../type_action/type_action";
 
 let initialState = {
     users: [],

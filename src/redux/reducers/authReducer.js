@@ -1,4 +1,4 @@
-export const setUserData = "SET-USER-DATA";
+import {setUserData} from "../type_action/type_action";
 
 let initialState = {
     id: null,

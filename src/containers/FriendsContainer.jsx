@@ -1,11 +1,12 @@
 import React from 'react';
-import {addFriendActionCreator, updateNewFriendActionCreator} from "../actions/SidebarAction";
+import {addFriendActionCreator, updateNewFriendActionCreator} from "../redux/actions/SidebarAction";
 import {connect} from "react-redux";
 import Friends from "../components/Friends/Friends";
 
 const mapStateToProps = (state) => {
     return {
-        sidebar: state.sidebar
+        sidebar: state.sidebar,
+        isAuth: state.auth.isAuth
     }
 };
 

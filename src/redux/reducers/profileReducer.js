@@ -1,6 +1,4 @@
-export const addPost = "ADD-POST";
-export const updateNewPostText = "UPDATE-NEW-POST-TEXT";
-export const setUserProfile = "SET-USER-PROFILE";
+import {addPost, updateNewPostText, setUserProfile} from "../type_action/type_action";
 
 let initialState = {
     postData: [

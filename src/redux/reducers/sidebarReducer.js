@@ -1,24 +1,23 @@
-export const addFriend = "ADD-FRIEND";
-export const updateNewFriend = "UPDATE-NEW-FRIEND";
+import {addFriend, updateNewFriend} from "../type_action/type_action";
 
 let initialState =  {
     friendsData: [
         {
             id: 1,
-            name: "Ibragim",
-            lastName: "Abdualev",
+            name: "Petya",
+            lastName: "Petrov",
             avatar: "http://konkurent-azov.ru/pics/avatarki-animirovanie-dlya-skaypa.jpg"
         },
         {
             id: 2,
-            name: "Sanya",
-            lastName: "Rybalko",
+            name: "Ivan",
+            lastName: "Ivanov",
             avatar: "https://klike.net/uploads/posts/2018-06/1528377375_1.jpg"
         },
         {
             id: 3,
-            name: "Liza",
-            lastName: "Bezikaeva",
+            name: "Vasya",
+            lastName: "Vasyliev",
             avatar: "http://arrowseries.ru/sites/default/files/photo/arrow-avatar-yxkea.jpg"
         }
     ],

@@ -1,5 +1,4 @@
-export const addMessage = "ADD-MESSAGE";
-export const updateNewMessage = "UPDATE-NEW-MESSAGE";
+import {addMessage, updateNewMessage} from "../type_action/type_action";
 
 let initialState = {
     dialogsData: [

@@ -1,4 +1,4 @@
-import {addMessage, updateNewMessage} from "../reducers/dialogsReducer";
+import {addMessage, updateNewMessage} from "../type_action/type_action";
 
 export const addMessageActionCreator = () => ({type: addMessage});
 

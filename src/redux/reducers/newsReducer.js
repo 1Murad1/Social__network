@@ -1,5 +1,4 @@
-export const addNews = "ADD-NEWS";
-export const updateNewNews = "UPDATE-NEW-NEWS";
+import {addNews,updateNewNews} from "../type_action/type_action";
 
 let initialState = {
     newsData: [

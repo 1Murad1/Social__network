@@ -1,4 +1,4 @@
-import {addFriend, updateNewFriend} from "../reducers/sidebarReducer";
+import {addFriend, updateNewFriend} from "../type_action/type_action";
 
 export const addFriendActionCreator = () => ({type: addFriend});
 

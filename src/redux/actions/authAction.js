@@ -1,5 +1,5 @@
-import {setUserData} from "../reducers/authReducer";
-import {authApi} from "../Api/api";
+import {setUserData} from "../type_action/type_action";
+import {authApi} from "../../Api/api";
 
 export const setAuthUserDataActionCreator = (id, email, login) => ({type: setUserData, data: {id, email, login}});
 

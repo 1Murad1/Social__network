@@ -1,5 +1,5 @@
-import {addPost, setUserProfile, updateNewPostText} from "../reducers/profileReducer";
-import {usersApi} from "../Api/api";
+import {addPost, setUserProfile, updateNewPostText} from "../type_action/type_action";
+import {usersApi} from "../../Api/api";
 
 export const addPostActionCreator = () => ({type: addPost});
 

@@ -6,8 +6,8 @@ import {
     toggleIsFetching,
     unFollow,
     toggleIsFollowingProgress
-} from "../reducers/usersReducer";
-import {usersApi} from "../Api/api";
+} from "../type_action/type_action";
+import {usersApi} from "../../Api/api";
 
 export const followActionCreator = (userId) => ({type: follow, userId: userId});
 

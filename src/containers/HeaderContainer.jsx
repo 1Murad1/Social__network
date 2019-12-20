@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/Header/Header";
 import {connect} from "react-redux";
-import {meThunkCreator} from "../actions/authAction";
+import {meThunkCreator} from "../redux/actions/authAction";
 
 
 class HeaderContainer extends React.Component {

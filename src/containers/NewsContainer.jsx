@@ -1,5 +1,5 @@
 import React from 'react';
-import {addNewsActionCreator, updateNewNewsActionCreator} from "../actions/NewsAction";
+import {addNewsActionCreator, updateNewNewsActionCreator} from "../redux/actions/NewsAction";
 import {connect} from "react-redux";
 import News from "../components/News/News";
 

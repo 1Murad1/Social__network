@@ -1,6 +1,7 @@
 import React from 'react';
 import s from "./friends.module.css";
 import Friend from "./Friend/Friend";
+import {Redirect} from "react-router-dom";
 
 const Friends = (props) => {
 
@@ -16,6 +17,8 @@ const Friends = (props) => {
         let friend = newFriendsElements.current.value;
         props.updateNewFriend(friend);
     }
+
+    if(!props.isAuth) return <Redirect to = "/login" />
 
     return (
         <div className={s.friends}>
