@@ -1,4 +1,4 @@
-import {addPost, updateNewPostText, setUserProfile} from "../type_action/type_action";
+import {addPost, setUserProfile, setStatus, deletePost, savePhotoSuccess} from "../type_action/type_action";
 
 let initialState = {
     postData: [
@@ -13,8 +13,8 @@ let initialState = {
             likesCount: 15
         }
     ],
-    newPostText: "Front end developer",
-    profile: null
+    profile: null,
+    status: ""
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -22,23 +22,32 @@ const profileReducer = (state = initialState, action) => {
         case addPost:
             let newPost = {
                 id: 3,
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: 0
             };
             return {
                 ...state,
-                newPostText: "",
                 postData: [...state.postData, newPost]
-            };
-        case updateNewPostText:
-            return {
-                ...state,
-                newPostText: action.newText
             };
         case setUserProfile:
             return {
                 ...state,
                 profile: action.profile
+            };
+        case setStatus:
+            return {
+                ...state,
+                status: action.status
+            };
+        case deletePost:
+            return {
+                ...state,
+                postData: state.postData.filter(p => p.id != action.postId)
+            };
+        case savePhotoSuccess:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
             }
         default:
             return state;

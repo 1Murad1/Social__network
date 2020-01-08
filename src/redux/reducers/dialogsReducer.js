@@ -1,4 +1,4 @@
-import {addMessage, updateNewMessage} from "../type_action/type_action";
+import {addMessage} from "../type_action/type_action";
 
 let initialState = {
     dialogsData: [
@@ -36,26 +36,19 @@ let initialState = {
             message: "Good night",
             id: 3
         }
-    ],
-    newMessageText: "You wrestler?"
+    ]
 }
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case addMessage:
             let newMessage = {
-                message: state.newMessageText,
+                message: action.newMessageText,
                 id: 4
             };
             return  {
                 ...state,
-                newMessageText: "",
                 messagesData: [...state.messagesData, newMessage]
-            }
-        case updateNewMessage:
-            return {
-                ...state,
-                newMessageText: action.newMessage
             }
         default:
             return state;

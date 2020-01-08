@@ -1,0 +1,7 @@
+.selectedPage {
+    color: gold;
+}
+
+.hov:hover {
+    cursor: pointer;
+}

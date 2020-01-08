@@ -1,14 +1,10 @@
 import React from "react";
 import Header from "../components/Header/Header";
 import {connect} from "react-redux";
-import {meThunkCreator} from "../redux/actions/authAction";
+import {logout} from "../redux/actions/authAction";
 
 
 class HeaderContainer extends React.Component {
-
-    componentDidMount() {
-        this.props.me()
-    }
 
     render() {
         return (
@@ -26,8 +22,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToState = (dispatch) => {
     return {
-        me: () => {
-            dispatch(meThunkCreator())
+        logout() {
+            dispatch(logout())
         }
     }
 }

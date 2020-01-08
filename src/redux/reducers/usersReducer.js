@@ -3,7 +3,7 @@ import {follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIs
 let initialState = {
     users: [],
     pageSize: 5,
-    totalUsersCount: 0,
+    totalItemsCount: 0,
     currentPage: 1,
     isFetching: true,
     followingIsProgress: []
@@ -60,7 +60,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 followingIsProgress: action.isFetching
                     ? [...state.followingIsProgress, action.userId]
-                    : state.followingIsProgress.filter(id => id != action.userId)
+                    : state.followingIsProgress.filter(id => id !== action.userId)
             }
         default:
             return state;

@@ -8,6 +8,13 @@ import {
 import Preloader from "../common/Preloader/Preloader";
 import {WithAuthRedirect} from "../components/HOC/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage, getFollowingIsProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUserCount,
+    getUsers
+} from "../redux/selectors/userSelectors";
 
 class UsersContainer extends React.Component  {
 
@@ -27,7 +34,7 @@ class UsersContainer extends React.Component  {
                 <Users currentPage={this.props.currentPage}
                        users={this.props.users}
                        pageSize={this.props.pageSize}
-                       totalUsersCount={this.props.totalUsersCount}
+                       totalItemsCount={this.props.totalItemsCount}
                        onPageChanged={this.onPageChanged}
                        follow={this.props.follow}
                        unFollow={this.props.unFollow}
@@ -38,14 +45,25 @@ class UsersContainer extends React.Component  {
 
 }
 
+// const mapStateToProps = (state) => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         followingIsProgress: state.usersPage.followingIsProgress
+//     }
+// }
+
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingIsProgress: state.usersPage.followingIsProgress
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalItemsCount: getTotalUserCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingIsProgress: getFollowingIsProgress(state)
     }
 }
 

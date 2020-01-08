@@ -23,42 +23,29 @@ export const toggleIsFetchingActionCreator = (isFetching) => ({type: toggleIsFet
 
 export const toggleIsFollowingProgressActionCreator = (isFetching, userId) => ({type: toggleIsFollowingProgress, isFetching: isFetching, userId: userId});
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
-    return (dispatch) => {
+export const getUsersThunkCreator = (currentPage, pageSize) => async (dispatch) => {
         dispatch(toggleIsFetchingActionCreator(true))
-        usersApi.getUsers(currentPage, pageSize)
-        .then(response => {
+        dispatch(setCurrentPageActionCreator(currentPage))
+        let response = await usersApi.getUsers(currentPage, pageSize)
             dispatch(toggleIsFetchingActionCreator(false))
             dispatch(setUsersActionCreator(response.items))
             dispatch(setTotalUsersCountActionCreator(response.totalCount))
-        })
     }
-}
 
-export const unFollowThunkCreator = (userId) => {
-    return (dispatch) => {
+export const unFollowThunkCreator = (userId) => async (dispatch) => {
         dispatch(toggleIsFollowingProgressActionCreator(true, userId))
-        usersApi.unFollow(userId)
-        .then(response => {
-                if(response.data.resultCode == 0) {
-                    dispatch(unFollowActionCreator(userId))
-                }
-                dispatch(toggleIsFollowingProgressActionCreator(false, userId))
+        let response = await usersApi.unFollow(userId)
+            if(response.data.resultCode === 0) {
+                dispatch(unFollowActionCreator(userId))
             }
-        )
+            dispatch(toggleIsFollowingProgressActionCreator(false, userId))
     }
-}
 
-export const followThunkCreator = (userId) => {
-    return (dispatch) => {
+export const followThunkCreator = (userId) => async (dispatch) => {
         dispatch(toggleIsFollowingProgressActionCreator(true, userId))
-        usersApi.follow(userId)
-        .then(response => {
-            if (response.data.resultCode == 0) {
+        let response = await usersApi.follow(userId)
+            if (response.data.resultCode === 0) {
                 dispatch(followActionCreator(userId))
             }
             dispatch(toggleIsFollowingProgressActionCreator(false, userId))
-        })
     }
-
-}
